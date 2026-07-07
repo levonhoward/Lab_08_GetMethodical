@@ -13,7 +13,7 @@ public class SafeInput
      * @param prompt - prompt for the user
      * @return a String response that is not zero length
      */
-    public static String getNonZeroString(Scanner pipe, String prompt)
+    public static String getNonZeroLenString(Scanner pipe, String prompt)
     {
         String retString = ""; // Set this to zero length. Loop runs until it isn't
 
@@ -207,5 +207,57 @@ public class SafeInput
         } while (!isValidInput);
 
         return input;
+    }
+
+    /**
+     * Create a nice header with a centered message
+     *
+     * @param msg - The message to be entered in the header, must be 54 characters or fewer
+     */
+    public static void prettyHeader(String msg)
+    {
+        int msgLength = msg.length();
+
+        if (msgLength > 54)
+        {
+            System.out.println("ERROR: Header is too long. Must be 54 characters or fewer.");
+        }
+        else
+        {
+            // Top line of header
+            for (int i = 0; i < 60; i++)
+            {
+                System.out.print("*");
+            }
+
+            // Main header line
+            System.out.print("\n***");
+            for (int i = 0; i < ((54 - msgLength) / 2); i++)
+            {
+                System.out.print(" ");
+            }
+            System.out.print(msg);
+            if (msgLength % 2 == 0)
+            {
+                for (int i = 0; i < ((54 - msgLength) / 2); i++)
+                {
+                    System.out.print(" ");
+                }
+            }
+            else
+            {
+                for (int i = 0; i < (((54 - msgLength) / 2) + 1); i++)
+                {
+                    System.out.print(" ");
+                }
+            }
+            System.out.print("***\n");
+
+            // Bottom line of header
+            for (int i = 0; i < 60; i++)
+            {
+                System.out.print("*");
+            }
+        }
     }
 }
